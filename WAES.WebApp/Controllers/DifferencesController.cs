@@ -17,6 +17,10 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// http endpoints that accepts JSON base64 encoded binary data
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("left")]
         public IActionResult Left()
