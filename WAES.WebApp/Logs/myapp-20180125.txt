@@ -1,0 +1,105 @@
+2018-01-25 17:36:23.458 +02:00 [Information] Starting web host
+2018-01-25 17:36:24.533 +02:00 [Information] User profile is available. Using '"/home/tcs/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2018-01-25 17:36:52.877 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/getMessages  
+2018-01-25 17:36:53.000 +02:00 [Error] An unhandled exception has occurred while executing the request
+System.InvalidOperationException: The constraint entry 'version' - 'apiVersion' on the route 'api/v{version:apiVersion}/diff' could not be resolved by the constraint resolver of type 'DefaultInlineConstraintResolver'.
+   at Microsoft.AspNetCore.Routing.RouteConstraintBuilder.AddResolvedConstraint(String key, String constraintText)
+   at Microsoft.AspNetCore.Routing.Tree.TreeRouteBuilder.MapOutbound(IRouter handler, RouteTemplate routeTemplate, RouteValueDictionary requiredLinkValues, String routeName, Int32 order)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AddEntries(TreeRouteBuilder builder, ActionDescriptorCollection actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.<RouteAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-01-25 17:36:53.065 +02:00 [Information] Request finished in 189.9593ms 500 text/html; charset=utf-8
+2018-01-25 17:37:29.005 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1/diff/getMessages  
+2018-01-25 17:37:29.007 +02:00 [Error] An unhandled exception has occurred while executing the request
+System.InvalidOperationException: The constraint entry 'version' - 'apiVersion' on the route 'api/v{version:apiVersion}/diff' could not be resolved by the constraint resolver of type 'DefaultInlineConstraintResolver'.
+   at Microsoft.AspNetCore.Routing.RouteConstraintBuilder.AddResolvedConstraint(String key, String constraintText)
+   at Microsoft.AspNetCore.Routing.Tree.TreeRouteBuilder.MapOutbound(IRouter handler, RouteTemplate routeTemplate, RouteValueDictionary requiredLinkValues, String routeName, Int32 order)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AddEntries(TreeRouteBuilder builder, ActionDescriptorCollection actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.<RouteAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-01-25 17:37:29.026 +02:00 [Information] Request finished in 20.703ms 500 text/html; charset=utf-8
+2018-01-25 17:38:10.149 +02:00 [Information] Host Terminated
+2018-01-25 17:38:17.872 +02:00 [Information] Starting web host
+2018-01-25 17:38:18.064 +02:00 [Information] User profile is available. Using '"/home/tcs/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2018-01-25 17:38:21.510 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1/diff/getMessages  
+2018-01-25 17:38:21.556 +02:00 [Error] An unhandled exception has occurred while executing the request
+System.InvalidOperationException: The constraint entry 'version' - 'apiVersion' on the route 'api/v{version:apiVersion}/diff/getMessages' could not be resolved by the constraint resolver of type 'DefaultInlineConstraintResolver'.
+   at Microsoft.AspNetCore.Routing.RouteConstraintBuilder.AddResolvedConstraint(String key, String constraintText)
+   at Microsoft.AspNetCore.Routing.Tree.TreeRouteBuilder.MapOutbound(IRouter handler, RouteTemplate routeTemplate, RouteValueDictionary requiredLinkValues, String routeName, Int32 order)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AddEntries(TreeRouteBuilder builder, ActionDescriptorCollection actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.<RouteAsync>d__9.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2018-01-25 17:38:21.598 +02:00 [Information] Request finished in 92.7855ms 500 text/html; charset=utf-8
+2018-01-25 17:38:34.080 +02:00 [Information] Starting web host
+2018-01-25 17:38:34.282 +02:00 [Information] User profile is available. Using '"/home/tcs/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2018-01-25 17:38:36.491 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1/diff/getMessages  
+2018-01-25 17:38:36.617 +02:00 [Information] Executing action method "WebApp.Controllers.MessagesController.Index (WAES.WebApp)" with arguments (null) - ModelState is Valid
+2018-01-25 17:38:36.621 +02:00 [Information] getMessages
+2018-01-25 17:38:36.624 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2018-01-25 17:38:36.627 +02:00 [Information] Executed action "WebApp.Controllers.MessagesController.Index (WAES.WebApp)" in 17.2024ms
+2018-01-25 17:38:36.631 +02:00 [Information] Request finished in 143.4175ms 200 
+2018-01-25 17:38:41.997 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1/diff/getMessages2  
+2018-01-25 17:38:42.007 +02:00 [Information] Request finished in 10.2114ms 404 
+2018-01-25 17:38:51.852 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1/diff/getMessages3  
+2018-01-25 17:38:51.852 +02:00 [Information] Request finished in 0.339ms 404 
+2018-01-25 17:39:01.443 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0.0/diff/getMessages  
+2018-01-25 17:39:01.450 +02:00 [Information] Request finished in 7.0783ms 404 
+2018-01-25 17:39:13.377 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0/diff/getMessages  
+2018-01-25 17:39:13.379 +02:00 [Information] Executing action method "WebApp.Controllers.MessagesController.Index (WAES.WebApp)" with arguments (null) - ModelState is Valid
+2018-01-25 17:39:13.380 +02:00 [Information] getMessages
+2018-01-25 17:39:13.380 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2018-01-25 17:39:13.380 +02:00 [Information] Executed action "WebApp.Controllers.MessagesController.Index (WAES.WebApp)" in 1.9806ms
+2018-01-25 17:39:13.381 +02:00 [Information] Request finished in 3.9959ms 200 
+2018-01-25 17:39:49.904 +02:00 [Information] Host Terminated
+2018-01-25 17:40:53.067 +02:00 [Information] Starting web host
+2018-01-25 17:40:53.283 +02:00 [Information] User profile is available. Using '"/home/tcs/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2018-01-25 17:40:58.593 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0/diff/getMessages  
+2018-01-25 17:40:58.716 +02:00 [Information] Executing action method "WebApp.Controllers.DifferencesController.Index (WAES.WebApp)" with arguments (null) - ModelState is Valid
+2018-01-25 17:40:58.719 +02:00 [Information] getMessages
+2018-01-25 17:40:58.722 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2018-01-25 17:40:58.725 +02:00 [Information] Executed action "WebApp.Controllers.DifferencesController.Index (WAES.WebApp)" in 16.8946ms
+2018-01-25 17:40:58.729 +02:00 [Information] Request finished in 139.1664ms 200 
+2018-01-25 17:51:38.313 +02:00 [Information] Starting web host
+2018-01-25 17:51:38.518 +02:00 [Information] User profile is available. Using '"/home/tcs/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2018-01-25 17:51:42.292 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0/diff/getMessages  
+2018-01-25 17:51:42.378 +02:00 [Information] Request finished in 90.7087ms 404 
+2018-01-25 17:51:48.805 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0/diff/left  
+2018-01-25 17:51:48.877 +02:00 [Information] Executing action method "WebApp.Controllers.DifferencesController.Left (WAES.WebApp)" with arguments (null) - ModelState is Valid
+2018-01-25 17:51:48.882 +02:00 [Information] Left
+2018-01-25 17:51:48.888 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2018-01-25 17:51:48.892 +02:00 [Information] Executed action "WebApp.Controllers.DifferencesController.Left (WAES.WebApp)" in 23.3298ms
+2018-01-25 17:51:48.895 +02:00 [Information] Request finished in 89.9914ms 200 
+2018-01-25 17:51:57.604 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:5000/api/v1.0/diff/right  
+2018-01-25 17:51:57.608 +02:00 [Information] Executing action method "WebApp.Controllers.DifferencesController.Right (WAES.WebApp)" with arguments (null) - ModelState is Valid
+2018-01-25 17:51:57.609 +02:00 [Information] Right
+2018-01-25 17:51:57.613 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2018-01-25 17:51:57.614 +02:00 [Information] Executed action "WebApp.Controllers.DifferencesController.Right (WAES.WebApp)" in 5.4878ms
+2018-01-25 17:51:57.614 +02:00 [Information] Request finished in 10.333ms 200 
+2018-01-25 18:53:13.236 +02:00 [Information] Host Terminated

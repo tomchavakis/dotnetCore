@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  ways-node-1:
+    image: ways_node_1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:80"
+    container_name: ways_node_1
+    networks:
+      - ways-network
+    restart: always
+#    deploy:
+#          mode: replicated
+#          replicas: 3
+      
+  ways-node-2:
+    image: ways_node_2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9001:80"
+    container_name: ways_node_2
+    networks:
+      - ways-network
+    restart: always     
+networks:
+  ways-network:
+    driver: bridge

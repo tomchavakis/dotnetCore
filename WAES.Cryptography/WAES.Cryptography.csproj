@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WAES.BitsConverter\WAES.BitsConverter.csproj">
+      <Project>{C19EB6AD-187C-480B-BDBC-D9C681785EB2}</Project>
+      <Name>WAES.BitsConverter</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

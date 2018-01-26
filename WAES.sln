@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.WebApp", "WAES.WebApp\WAES.WebApp.csproj", "{4D403DAE-D84E-4260-8FAA-32CAD37EBDDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Cryptography", "WAES.Cryptography\WAES.Cryptography.csproj", "{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.WebApp.UnitTests", "WAES.WebApp.UnitTests\WAES.WebApp.UnitTests.csproj", "{684EC984-467D-4958-88B8-FC567EDFA66C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.BitsConverter", "WAES.BitsConverter\WAES.BitsConverter.csproj", "{C19EB6AD-187C-480B-BDBC-D9C681785EB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D403DAE-D84E-4260-8FAA-32CAD37EBDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D403DAE-D84E-4260-8FAA-32CAD37EBDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D403DAE-D84E-4260-8FAA-32CAD37EBDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D403DAE-D84E-4260-8FAA-32CAD37EBDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{684EC984-467D-4958-88B8-FC567EDFA66C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{684EC984-467D-4958-88B8-FC567EDFA66C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{684EC984-467D-4958-88B8-FC567EDFA66C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{684EC984-467D-4958-88B8-FC567EDFA66C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C19EB6AD-187C-480B-BDBC-D9C681785EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C19EB6AD-187C-480B-BDBC-D9C681785EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C19EB6AD-187C-480B-BDBC-D9C681785EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C19EB6AD-187C-480B-BDBC-D9C681785EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
