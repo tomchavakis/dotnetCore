@@ -6,4 +6,4 @@ WORKDIR /app
 EXPOSE 80
 COPY /bin/Release/netcoreapp2.0/publish .
 RUN ls -la
-ENTRYPOINT ["dotnet", "WebbApp.dll"]
+ENTRYPOINT ["dotnet", "WAES.WebApp.dll"]
