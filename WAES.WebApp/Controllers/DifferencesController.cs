@@ -1,8 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApp.Model;
 using Newtonsoft.Json;
+using WAES.BitsConverter;
+using WAYS.Cryptography;
 
 namespace WebApp.Controllers
 {
@@ -17,32 +21,69 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// http endpoints that accepts JSON base64 encoded binary data
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("left")]
-        public IActionResult Left()
-        {
-            using (var db = new DatabaseContext())
-            {
-                var blogs = db.Blogs.ToList();
-                _logger.LogDebug(string.Format("Left({0})", JsonConvert.SerializeObject(blogs, Formatting.Indented)));
 
-                return Ok(blogs);
+        [HttpPost]
+        [Route("{id}/left")]
+        public IActionResult Left(int id, MessageBinding model)
+        {
+            _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
+                JsonConvert.SerializeObject(model, Formatting.Indented)));
+
+            if (id > 0 && model != null && !string.IsNullOrEmpty(model.Payload) && Methods.IsValidBase64(model.Payload))
+            {
+                using (var db = new DatabaseContext())
+                {
+                    List<Message> messages = db.Messages.Where(i => i.MessageId == id).ToList();
+
+                    if (messages.Count > 0)
+                    {
+                        Message dbMessage = messages.LastOrDefault();
+
+                        byte[] Base64ToByteArrayDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
+                        byte[] Base64ToByteArrayModel = Methods.DecodeBase64ToByteArray(model.Payload);
+                        List<int> diffs = BitsDiff.CompareByteArrays(Base64ToByteArrayDatabase, Base64ToByteArrayModel);
+
+                        _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
+                            JsonConvert.SerializeObject(diffs, Formatting.Indented)));
+
+                        return Ok(diffs);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Message message = new Message()
+                            {
+                                MessageId = id,
+                                Payload = model.Payload
+                            };
+                            
+                            db.Messages.Add(message);
+                            db.SaveChanges();
+
+                            _logger.LogDebug(string.Format("(Left:{0})", message));
+                            return Ok();
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.LogError(string.Format("(Left:{0})", e));
+                        }
+                    }
+
+                    return Ok();
+                }
             }
 
-            _logger.LogInformation("Left");
-
-            return Ok();
+            _logger.LogDebug(string.Format("(Left:BadRequest)"));
+            return BadRequest();
         }
 
-        [HttpGet]
-        [Route("right")]
-        public IActionResult Right()
+        [HttpPost]
+        [Route("{id}/right")]
+        public IActionResult Right(int id, MessageBinding message)
         {
-            _logger.LogInformation("Right");
+            _logger.LogDebug(string.Format("(Right-id:{0},message:{1})", id,
+                JsonConvert.SerializeObject(message, Formatting.Indented)));
 
             return Ok();
         }

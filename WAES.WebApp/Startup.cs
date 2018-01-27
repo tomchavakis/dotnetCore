@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using System.Linq;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Web.Http.Versioning;
+using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using WebApp.Controllers;
 using WebApp.Model;
 
 namespace WebApp
@@ -22,8 +28,8 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddVersionedApiExplorer( o => o.GroupNameFormat = "'v'VVV" );
-   
+            services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+
             services.AddMvc();
             //Adding Microsoft API Versioning
             services.AddApiVersioning();
@@ -47,12 +53,11 @@ namespace WebApp
                         } );
                 }
             } );
-
-            
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -63,35 +68,29 @@ namespace WebApp
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI( options =>
+            app.UseSwaggerUI(options =>
             {
-                foreach ( var description in provider.ApiVersionDescriptions )
+                foreach (var description in provider.ApiVersionDescriptions)
                 {
                     options.SwaggerEndpoint(
                         $"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant() );
+                        description.GroupName.ToUpperInvariant());
                 }
-            } );
+            });
 
             DefaultFilesOptions DefaultFile = new DefaultFilesOptions();
             DefaultFile.DefaultFileNames.Clear();
             DefaultFile.DefaultFileNames.Add("index.html");
             app.UseDefaultFiles(DefaultFile);
-            
+
             app.UseStaticFiles();
             app.UseDefaultFiles();
 
-            app.Run(context => {
-                return context.Response.WriteAsync("Welcome to the API Home Page!!!");
-            });
-            
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}");
-            });
+//            app.Run(context => {
+//                return context.Response.WriteAsync("Welcome to the API Home Page!!!");
+//            });
 
+            app.UseMvc();
         }
     }
 }
