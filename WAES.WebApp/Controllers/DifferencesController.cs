@@ -80,18 +80,20 @@ namespace WebApp.Controllers
 
                     if (messages.Count > 0)
                     {
-                        Message dbMessage = messages.LastOrDefault();
-
+                        Message dbMessage = messages[messages.Count-1];
+                        
+//                        _logger.LogDebug(string.Format("{0}", JsonConvert.SerializeObject(dbMessage, Formatting.Indented)));
+//                        
                         byte[] Base64ToByteArrayOfDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
                         byte[] Base64ToByteArrayOfModel = Methods.DecodeBase64ToByteArray(model.Payload);
 
-                        ComparisonResult res =
-                            BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
-
+                      
+                        ComparisonResult res = BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
+                      
 
                         string middleEndpointUrl = Configuration["EndPoints:middle"];
                         int v = Convert.ToInt32(HttpContext.GetRequestedApiVersion().ToString());
-
+                       
                         var resultFromMiddleEndPoint = DifferencesClient.Middle(middleEndpointUrl, v, id, res).Result;
 
                         _logger.LogDebug(string.Format("({0} id:{1},message:{2})", method, id,

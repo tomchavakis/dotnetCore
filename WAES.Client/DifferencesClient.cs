@@ -32,6 +32,7 @@ namespace WAES.Client
         
         public static async Task<ComparisonResult> Middle(string basePath, int version,int id,  ComparisonResult model)
         {
+            
             string apiPath = "{0}/v{1}/diff/{2}";
 
             string methodUrl = string.Format(apiPath, basePath, version, id);

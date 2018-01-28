@@ -3,6 +3,7 @@ version: '3'
 services:
   ways-node-1:
     image: ways_node_1
+    hostname: ways_node_1
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,7 +11,9 @@ services:
       - "9000:80"
     container_name: ways_node_1
     networks:
-      - ways-network
+      ways-network:
+        aliases:
+          - ways_node_1
     restart: always
 #    deploy:
 #          mode: replicated
@@ -18,6 +21,7 @@ services:
       
   ways-node-2:
     image: ways_node_2
+    hostname: ways_node_2
     build:
       context: .
       dockerfile: Dockerfile
@@ -25,11 +29,15 @@ services:
       - "9001:80"
     container_name: ways_node_2
     networks:
-      - ways-network
+      ways-network:
+        aliases:
+          - ways_node_2
+      
     restart: always     
     
   ways-node-3:
     image: ways_node_3
+    hostname: ways_node_3
     build:
       context: .
       dockerfile: Dockerfile
@@ -37,7 +45,9 @@ services:
       - "9002:80"
     container_name: ways_node_3
     networks:
-      - ways-network
+      ways-network:
+        aliases:
+          - ways_node_3
     restart: always     
 
 networks:

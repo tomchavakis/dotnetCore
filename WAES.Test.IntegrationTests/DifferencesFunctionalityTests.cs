@@ -8,8 +8,8 @@ namespace WAES.Test.IntegrationTests
     [TestFixture]
     public class DifferencesFunctionalityTests
     {
-        //const string basePath = "http://localhost:5000/api";
-        const string basePath = "http://localhost:9000/api";
+        const string basePath = "http://localhost:5000/api";
+        //const string basePath = "http://localhost:9001/api";
 
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace WAES.Test.IntegrationTests
         {
             MessageBinding bindingModel = new MessageBinding();
             bindingModel.Payload = "ZG9jdG9yV2hv"; //doctorWho
-            await DifferencesClient.LeftTask(basePath, 1, 57, bindingModel); 
+            await DifferencesClient.LeftTask(basePath, 1, 5, bindingModel); 
         }
         
         /// <summary>
@@ -32,7 +32,7 @@ namespace WAES.Test.IntegrationTests
         {
             MessageBinding bindingModel = new MessageBinding();
             bindingModel.Payload = "ZG9jdG9yV2hp"; //doctorWhi
-            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 57, bindingModel).Result;
+            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 5, bindingModel).Result;
             Assert.AreEqual(result.AreEqual,ComparisonResultEnum.Equal);
             Assert.AreEqual(result.Offsets, new int[] {8});
             Assert.AreEqual(result.OffsetsLength, 1);
@@ -43,7 +43,7 @@ namespace WAES.Test.IntegrationTests
         {
             MessageBinding bindingModel = new MessageBinding();
             bindingModel.Payload = "ZG9jdG9yU3RyYW5nZQ=="; //doctorStrange
-            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 57, bindingModel).Result;
+            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 5, bindingModel).Result;
             Assert.AreEqual(result.AreEqual,ComparisonResultEnum.NotEqual);
         }
        
