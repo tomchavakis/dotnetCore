@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -23,11 +24,17 @@ namespace WebApp
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
             services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
 
             services.AddMvc();
@@ -52,6 +59,10 @@ namespace WebApp
                             Description = "http endpoints that accepts JSON base64 encoded binary data"
                         } );
                 }
+                
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "WAES.WebApp.xml"); 
+                options.IncludeXmlComments(xmlPath);
             } );
         }
 

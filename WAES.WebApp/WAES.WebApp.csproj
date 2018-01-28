@@ -4,9 +4,20 @@
     <AssemblyName>WAES.WebApp</AssemblyName>
     <RootNamespace>WebApp</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\WAES.WebApp.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DocumentationFile>bin\Release\netcoreapp2.0\publish\WAES.WebApp.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Logs" />
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
@@ -24,6 +35,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WAES.Client\WAES.Client.csproj">
+      <Project>{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}</Project>
+      <Name>WAES.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WAES.Cryptography\WAES.Cryptography.csproj" />
     <ProjectReference Include="..\WAES.Model\WAES.Model.csproj">
       <Project>{587974A5-7E9B-4FA1-A5D2-44859F008EA0}</Project>

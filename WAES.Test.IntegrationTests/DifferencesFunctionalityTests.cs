@@ -8,8 +8,8 @@ namespace WAES.Test.IntegrationTests
     [TestFixture]
     public class DifferencesFunctionalityTests
     {
-        const string basePath = "http://localhost:5000/api";
-        //private string basePath = "http://localhost:9000/";
+        //const string basePath = "http://localhost:5000/api";
+        const string basePath = "http://localhost:9000/api";
 
 
         /// <summary>
@@ -21,21 +21,50 @@ namespace WAES.Test.IntegrationTests
         {
             MessageBinding bindingModel = new MessageBinding();
             bindingModel.Payload = "ZG9jdG9yV2hv"; //doctorWho
-            await DifferencesClient.LefTask(basePath, 1, 15, bindingModel); 
+            await DifferencesClient.LeftTask(basePath, 1, 57, bindingModel); 
         }
         
         /// <summary>
         /// Create a POST Action to Test Left Method
         /// </summary>
         [Test]
-        public void DifferencesLeftTest()
+        public void DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult()
         {
             MessageBinding bindingModel = new MessageBinding();
             bindingModel.Payload = "ZG9jdG9yV2hp"; //doctorWhi
-            ComparisonResult result = DifferencesClient.LefTask(basePath, 1, 15, bindingModel).Result;
+            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 57, bindingModel).Result;
             Assert.AreEqual(result.AreEqual,ComparisonResultEnum.Equal);
             Assert.AreEqual(result.Offsets, new int[] {8});
             Assert.AreEqual(result.OffsetsLength, 1);
+        }
+
+        [Test]
+        public void DifferencesLeft_AreNotEqual_ReturnComparisonResult()
+        {
+            MessageBinding bindingModel = new MessageBinding();
+            bindingModel.Payload = "ZG9jdG9yU3RyYW5nZQ=="; //doctorStrange
+            ComparisonResult result = DifferencesClient.LeftTask(basePath, 1, 57, bindingModel).Result;
+            Assert.AreEqual(result.AreEqual,ComparisonResultEnum.NotEqual);
+        }
+       
+        [Test]
+        public void DifferencesRight_AreEqualWithDifferentPayload_ReturnComparisonResult()
+        {
+            MessageBinding bindingModel = new MessageBinding();
+            bindingModel.Payload = "ZG9jdG9yV2hp"; //doctorWhi
+            ComparisonResult result = DifferencesClient.RightTask(basePath, 1, 57, bindingModel).Result;
+            Assert.AreEqual(result.AreEqual,ComparisonResultEnum.Equal);
+            Assert.AreEqual(result.Offsets, new int[] {8});
+            Assert.AreEqual(result.OffsetsLength, 1);
+        }
+        
+        [Test]
+        public void DifferencesRight_AreNotEqual_ReturnComparisonResult()
+        {
+            MessageBinding bindingModel = new MessageBinding();
+            bindingModel.Payload = "ZG9jdG9yU3RyYW5nZQ=="; //doctorStrange
+            ComparisonResult result = DifferencesClient.RightTask(basePath, 1, 57, bindingModel).Result;
+            Assert.AreEqual(result.AreEqual,ComparisonResultEnum.NotEqual);
         }
     }
 }

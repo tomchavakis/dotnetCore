@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using WebApp.Model;
 using Newtonsoft.Json;
 using WAES.BitsConverter;
+using WAES.Client;
 using WAES.Model;
 using WAYS.Cryptography;
 
@@ -16,24 +18,58 @@ namespace WebApp.Controllers
     public class DifferencesController : Controller
     {
         ILogger<DifferencesController> _logger;
+        public IConfiguration Configuration { get; }
 
-        public DifferencesController(ILogger<DifferencesController> logger)
+        public DifferencesController(ILogger<DifferencesController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            Configuration = configuration;
         }
+
 
         [HttpPost]
-        [Route("id")]
-        public IActionResult GetResultFromDiffs(int id, ComparisonResult result)
+        [Route("{id}")]
+        public IActionResult GetResultFromDiffs(int id, [FromBody] ComparisonResult model)
         {
-            return Ok(result);
+            _logger.LogDebug(string.Format("(GetResultFromDiffs-id:{0},model:{1})", id,
+                JsonConvert.SerializeObject(model, Formatting.Indented)));
+
+            if (model != null)
+                return Ok(model);
+
+            return BadRequest();
         }
 
+        /// <summary>
+        /// HTTP Endpoint that accepts a base64 encoded binary data and compares them from the same of the database
+        /// </summary>
+        /// <param name="id">ID Of the Message</param>
+        /// <param name="model">MessageBinding Model</param>
+        /// <returns>MessageResponse</returns>
         [HttpPost]
         [Route("{id}/left")]
-        public IActionResult Left(int id, [FromBody]MessageBinding model)
+        public IActionResult Left(int id, [FromBody] MessageBinding model)
         {
-            _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
+            return Common(id, model, "Right");
+        }
+
+        /// <summary>
+        /// HTTP Endpoint that accepts a base64 encoded binary data and compares them from the same of the database
+        /// </summary>
+        /// <param name="id">ID Of the Message</param>
+        /// <param name="model">MessageBinding Model</param>
+        /// <returns>MessageResponse</returns>
+        [HttpPost]
+        [Route("{id}/right")]
+        public IActionResult Right(int id, [FromBody] MessageBinding model)
+        {
+            return Common(id, model, "Right");
+        }
+
+        [HttpGet]
+        public IActionResult Common(int id, MessageBinding model, string method)
+        {
+            _logger.LogDebug(string.Format("({0}-id:{1},model:{2})", method, id,
                 JsonConvert.SerializeObject(model, Formatting.Indented)));
 
             if (id > 0 && model != null && !string.IsNullOrEmpty(model.Payload) && Methods.IsValidBase64(model.Payload))
@@ -48,13 +84,20 @@ namespace WebApp.Controllers
 
                         byte[] Base64ToByteArrayOfDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
                         byte[] Base64ToByteArrayOfModel = Methods.DecodeBase64ToByteArray(model.Payload);
-                       
-                        ComparisonResult res = BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
 
-                        _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
-                            JsonConvert.SerializeObject(res, Formatting.Indented)));
-                        
-                        return Ok(res);
+                        ComparisonResult res =
+                            BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
+
+
+                        string middleEndpointUrl = Configuration["EndPoints:middle"];
+                        int v = Convert.ToInt32(HttpContext.GetRequestedApiVersion().ToString());
+
+                        var resultFromMiddleEndPoint = DifferencesClient.Middle(middleEndpointUrl, v, id, res).Result;
+
+                        _logger.LogDebug(string.Format("({0} id:{1},message:{2})", method, id,
+                            JsonConvert.SerializeObject(resultFromMiddleEndPoint, Formatting.Indented)));
+
+                        return Ok(resultFromMiddleEndPoint);
                     }
                     else
                     {
@@ -69,30 +112,24 @@ namespace WebApp.Controllers
                             db.Messages.Add(message);
                             db.SaveChanges();
 
-                            _logger.LogDebug(string.Format("(Left:{0})", message));
-                            //$"Message with ID: {id} does not exist"
+                            _logger.LogDebug(string.Format(
+                                "({0}:{1}, Message with ID: {2} does not exist and added to the database.", method,
+                                message,
+                                id));
+
                             return Ok();
                         }
                         catch (Exception e)
                         {
-                            _logger.LogError(string.Format("(Left:{0})", e));
+                            _logger.LogError(string.Format("({0}:{1})", method, e));
+                            return BadRequest();
                         }
                     }
                 }
             }
 
-            _logger.LogDebug(string.Format("(Left:BadRequest)"));
+            _logger.LogDebug(string.Format("({0}:BadRequest)", method));
             return BadRequest();
-        }
-
-        [HttpPost]
-        [Route("{id}/right")]
-        public IActionResult Right(int id, MessageBinding message)
-        {
-            _logger.LogDebug(string.Format("(Right-id:{0},message:{1})", id,
-                JsonConvert.SerializeObject(message, Formatting.Indented)));
-
-            return Ok();
         }
     }
 }
