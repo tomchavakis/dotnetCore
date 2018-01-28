@@ -7,6 +7,11 @@ namespace WAYS.Cryptography
 {
     public class Methods
     {
+        /// <summary>
+        /// Checks if the string is a valid base64 string
+        /// </summary>
+        /// <param name="message">input string</param>
+        /// <returns>Boolean Result</returns>
         public static bool IsValidBase64(string message)
         {
             string pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
@@ -16,6 +21,12 @@ namespace WAYS.Cryptography
                 return false;
         }
 
+        /// <summary>
+        /// Encodes the message using base64 encoding
+        /// </summary>
+        /// <param name="encodingMessage">string of the message</param>
+        /// <returns>base64 encoded string message</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string Base64EncodeText(string encodingMessage)
         {
             if (!string.IsNullOrEmpty(encodingMessage))
@@ -28,6 +39,12 @@ namespace WAYS.Cryptography
         }
 
 
+        /// <summary>
+        /// Decodes the base64 string message to the original string message
+        /// </summary>
+        /// <param name="base64EncodedData">base64 string message</param>
+        /// <returns>Original String Message</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string Base64DecodeText(string base64EncodedData)
         {
             if (!string.IsNullOrEmpty(base64EncodedData))
@@ -59,6 +76,12 @@ namespace WAYS.Cryptography
             throw new ArgumentException("input cannot be null or empty string");
         }
 
+        /// <summary>
+        /// Decodes the base64 input string to a representative byte array
+        /// </summary>
+        /// <param name="input">base64 message</param>
+        /// <returns>Byte Array of the base64 message</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static byte[] DecodeBase64ToByteArray(string input)
         {
             if (IsValidBase64(input))

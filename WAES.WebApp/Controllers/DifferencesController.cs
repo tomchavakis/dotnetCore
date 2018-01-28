@@ -27,6 +27,12 @@ namespace WebApp.Controllers
         }
 
 
+        /// <summary>
+        /// HTTP Endpoint that returns the base64 encoded binary differences
+        /// </summary>
+        /// <param name="id">ID Of the Message</param>
+        /// <param name="model">ComparisonResult model</param>
+        /// <returns>ComparisonResult</returns>
         [HttpPost]
         [Route("{id}")]
         public IActionResult GetResultFromDiffs(int id, [FromBody] ComparisonResult model)
@@ -66,6 +72,7 @@ namespace WebApp.Controllers
             return Common(id, model, "Right");
         }
 
+        [ApiExplorerSettings(IgnoreApi=true)]
         [HttpGet]
         public IActionResult Common(int id, MessageBinding model, string method)
         {

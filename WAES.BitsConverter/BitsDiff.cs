@@ -10,6 +10,12 @@ namespace WAES.BitsConverter
         {
         }
 
+        /// <summary>
+        /// Method for comparing byte arrays
+        /// </summary>
+        /// <param name="a">Byte Array a</param>
+        /// <param name="b">Byte Array b</param>
+        /// <returns>ComparisonResult Model</returns>
         public static ComparisonResult CompareByteArrays(byte[] a, byte[] b)
         {
             List<int> positions = new List<int>();
