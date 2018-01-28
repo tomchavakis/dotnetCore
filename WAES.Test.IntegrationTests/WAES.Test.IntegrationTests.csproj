@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>WAES.Test.IntegrationTests</AssemblyName>
+    <RootNamespace>WAES.Test.IntegrationTests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WAES.Client\WAES.Client.csproj">
+      <Project>{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}</Project>
+      <Name>WAES.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WAES.Model\WAES.Model.csproj">
+      <Project>{587974A5-7E9B-4FA1-A5D2-44859F008EA0}</Project>
+      <Name>WAES.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
