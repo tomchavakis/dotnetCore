@@ -2,4 +2,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WAES.Model\WAES.Model.csproj">
+      <Project>{587974A5-7E9B-4FA1-A5D2-44859F008EA0}</Project>
+      <Name>WAES.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

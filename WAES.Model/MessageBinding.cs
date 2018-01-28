@@ -1,4 +1,4 @@
-﻿namespace WebApp.Model
+﻿namespace WAES.Model
 {
     public class MessageBinding
     {

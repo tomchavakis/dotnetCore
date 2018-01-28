@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 using WAES.BitsConverter;
+using WAES.Model;
 using WAYS.Cryptography;
 
 namespace WAES.WebApp.UnitTests
@@ -92,19 +93,20 @@ namespace WAES.WebApp.UnitTests
             {84, 104, 111, 109, 97, 115, 67, 104, 97, 118, 97, 107, 105, 115})]
         public void CompareByteArrays_AreEqual_ReturnZeroDiffs(byte[] a, byte[] b)
         {
-            List<int> result = new List<int>(); 
-            result = BitsDiff.CompareByteArrays(a, b);
-            Assert.AreEqual(result.Count, 0);
+            ComparisonResult result = BitsDiff.CompareByteArrays(a, b);
+            Assert.AreEqual(result.AreEqual, ComparisonResultEnum.Equal);
+            Assert.AreEqual(result.Offsets.Length, 0);
+            Assert.AreEqual(result.OffsetsLength, 0);
         }
-        
+
         [Test]
-        [TestCase(new byte[] {84, 104, 111, 109, 97, 115, 67, 104, 97, 118, 97, 107, 105, 115}, new byte[]
-            {84, 104, 111, 109, 97, 115, 67, 104, 97, 118, 97, 107, 104, 114})]
+        [TestCase(new byte[] {84, 104, 111, 109, 97, 115, 67, 104, 97, 118, 97, 107, 105, 115}, new byte[] {84, 104, 111, 109, 97, 115, 67, 104, 97, 118, 97, 107, 104, 114})]
         public void CompareByteArrays_AreEqual_Return2Diffs(byte[] a, byte[] b)
         {
-            List<int> result = new List<int>(); 
-            result = BitsDiff.CompareByteArrays(a, b);
-            Assert.AreEqual(result.Count, 2);
+            ComparisonResult result = BitsDiff.CompareByteArrays(a, b);
+            Assert.AreEqual(result.AreEqual, ComparisonResultEnum.Equal);
+            Assert.AreEqual(result.OffsetsLength, 2);
+            Assert.AreEqual(result.Offsets, new int[] {12, 13});
         }
     }
 }

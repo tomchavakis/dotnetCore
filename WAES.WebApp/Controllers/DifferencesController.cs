@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using WebApp.Model;
 using Newtonsoft.Json;
 using WAES.BitsConverter;
+using WAES.Model;
 using WAYS.Cryptography;
 
 namespace WebApp.Controllers
@@ -21,6 +22,12 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
+        [Route("id")]
+        public IActionResult GetResultFromDiffs(int id, ComparisonResult result)
+        {
+            return Ok(result);
+        }
 
         [HttpPost]
         [Route("{id}/left")]
@@ -39,14 +46,16 @@ namespace WebApp.Controllers
                     {
                         Message dbMessage = messages.LastOrDefault();
 
-                        byte[] Base64ToByteArrayDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
-                        byte[] Base64ToByteArrayModel = Methods.DecodeBase64ToByteArray(model.Payload);
-                        List<int> diffs = BitsDiff.CompareByteArrays(Base64ToByteArrayDatabase, Base64ToByteArrayModel);
+                        byte[] Base64ToByteArrayOfDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
+                        byte[] Base64ToByteArrayOfModel = Methods.DecodeBase64ToByteArray(model.Payload);
+
+                       
+                        ComparisonResult res = BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
 
                         _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
-                            JsonConvert.SerializeObject(diffs, Formatting.Indented)));
+                            JsonConvert.SerializeObject(res, Formatting.Indented)));
 
-                        return Ok(diffs);
+                        return Ok(res);
                     }
                     else
                     {
@@ -57,20 +66,19 @@ namespace WebApp.Controllers
                                 MessageId = id,
                                 Payload = model.Payload
                             };
-                            
+
                             db.Messages.Add(message);
                             db.SaveChanges();
 
                             _logger.LogDebug(string.Format("(Left:{0})", message));
-                            return Ok();
+                            
+                            return Ok($"Message with ID: {id} does not exist");
                         }
                         catch (Exception e)
                         {
                             _logger.LogError(string.Format("(Left:{0})", e));
                         }
                     }
-
-                    return Ok();
                 }
             }
 
