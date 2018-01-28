@@ -31,7 +31,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("{id}/left")]
-        public IActionResult Left(int id, MessageBinding model)
+        public IActionResult Left(int id, [FromBody]MessageBinding model)
         {
             _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
                 JsonConvert.SerializeObject(model, Formatting.Indented)));
@@ -48,13 +48,12 @@ namespace WebApp.Controllers
 
                         byte[] Base64ToByteArrayOfDatabase = Methods.DecodeBase64ToByteArray(dbMessage.Payload);
                         byte[] Base64ToByteArrayOfModel = Methods.DecodeBase64ToByteArray(model.Payload);
-
                        
                         ComparisonResult res = BitsDiff.CompareByteArrays(Base64ToByteArrayOfDatabase, Base64ToByteArrayOfModel);
 
                         _logger.LogDebug(string.Format("(Left-id:{0},message:{1})", id,
                             JsonConvert.SerializeObject(res, Formatting.Indented)));
-
+                        
                         return Ok(res);
                     }
                     else
@@ -71,8 +70,8 @@ namespace WebApp.Controllers
                             db.SaveChanges();
 
                             _logger.LogDebug(string.Format("(Left:{0})", message));
-                            
-                            return Ok($"Message with ID: {id} does not exist");
+                            //$"Message with ID: {id} does not exist"
+                            return Ok();
                         }
                         catch (Exception e)
                         {

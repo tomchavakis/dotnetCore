@@ -4,11 +4,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.WebApp", "WAES.WebApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Cryptography", "WAES.Cryptography\WAES.Cryptography.csproj", "{7C9C4739-19AB-4FE1-A552-E9EB5F1ACEA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.WebApp.UnitTests", "WAES.WebApp.UnitTests\WAES.WebApp.UnitTests.csproj", "{684EC984-467D-4958-88B8-FC567EDFA66C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Tests.UnitTests", "WAES.Tests.UnitTests\WAES.Tests.UnitTests.csproj", "{684EC984-467D-4958-88B8-FC567EDFA66C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.BitsConverter", "WAES.BitsConverter\WAES.BitsConverter.csproj", "{C19EB6AD-187C-480B-BDBC-D9C681785EB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Model", "WAES.Model\WAES.Model.csproj", "{587974A5-7E9B-4FA1-A5D2-44859F008EA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Client", "WAES.Client\WAES.Client.csproj", "{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAES.Test.IntegrationTests", "WAES.Test.IntegrationTests\WAES.Test.IntegrationTests.csproj", "{1BF5AEED-E256-4D8D-B47B-93EDFBB4028A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +40,13 @@ Global
 		{587974A5-7E9B-4FA1-A5D2-44859F008EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{587974A5-7E9B-4FA1-A5D2-44859F008EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{587974A5-7E9B-4FA1-A5D2-44859F008EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F9F7E02-D3F3-4D6D-BEF1-4C09592F6291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF5AEED-E256-4D8D-B47B-93EDFBB4028A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF5AEED-E256-4D8D-B47B-93EDFBB4028A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF5AEED-E256-4D8D-B47B-93EDFBB4028A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF5AEED-E256-4D8D-B47B-93EDFBB4028A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

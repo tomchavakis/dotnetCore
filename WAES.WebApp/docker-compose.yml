@@ -27,6 +27,19 @@ services:
     networks:
       - ways-network
     restart: always     
+    
+  ways-node-3:
+    image: ways_node_3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9002:80"
+    container_name: ways_node_3
+    networks:
+      - ways-network
+    restart: always     
+
 networks:
   ways-network:
     driver: bridge
