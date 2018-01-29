@@ -3,13 +3,12 @@ version: '3'
 services:
   ways-node-1:
     image: ways_node_1
-    hostname: ways_node_1
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "9000:80"
-    container_name: ways_node_1
+    container_name: ways-node-1
     networks:
       ways-network:
         aliases:
@@ -21,13 +20,12 @@ services:
       
   ways-node-2:
     image: ways_node_2
-    hostname: ways_node_2
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "9001:80"
-    container_name: ways_node_2
+    container_name: ways-node-2
     networks:
       ways-network:
         aliases:
@@ -37,13 +35,12 @@ services:
     
   ways-node-3:
     image: ways_node_3
-    hostname: ways_node_3
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "9002:80"
-    container_name: ways_node_3
+    container_name: ways-node-3
     networks:
       ways-network:
         aliases:

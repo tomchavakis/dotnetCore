@@ -100,7 +100,9 @@ namespace WebApp.Controllers
 
                         string middleEndpointUrl = Configuration["EndPoints:middle"];
                         int v = Convert.ToInt32(HttpContext.GetRequestedApiVersion().ToString());
-                       
+                        
+                        _logger.LogDebug(string.Format("({0})", middleEndpointUrl));
+                        
                         var resultFromMiddleEndPoint = DifferencesClient.Middle(middleEndpointUrl, v, id, res).Result;
 
                         _logger.LogDebug(string.Format("({0} id:{1},message:{2})", method, id,

@@ -9,7 +9,7 @@ namespace WAES.Test.IntegrationTests
     public class DifferencesFunctionalityTests
     {
         const string basePath = "http://localhost:5000/api";
-        //const string basePath = "http://localhost:9001/api";
+        //const string basePath = "http://localhost:9001/api"; //Docker Test
 
 
         /// <summary>
