@@ -31,11 +31,6 @@ http://localhost:5000/swagger/
 
 dotnet test WAES.Tests.UnitTests
 
-## Run IntegrationTests
-
-dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
-dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
-
 ## Run with Docker Compose
 Go to WAES.WebApp application folder. 
 
@@ -43,8 +38,15 @@ docker-compose build
 
 docker-compose up
 
-## Integration Tests
+## Run Integration Tests
 
-You can run the WAES.Test.IntegrationTests. 
+- Without docker-compose
 
+dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
+dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
+
+- With docker-compose
 Uncomment the //const string basePath = "http://localhost:9001/api"; 
+
+dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
+dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
