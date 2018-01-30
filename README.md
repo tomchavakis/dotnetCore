@@ -36,4 +36,14 @@ dotnet test WAES.Tests.UnitTests
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
 
+## Run with Docker Compose
+Go to WAES.WebApp application folder. 
+
+docker-compose build
+docker-compose up
+
+##Integration Tests
+
+You can run the WAES.Test.IntegrationTests. 
+Uncomment the //const string basePath = "http://localhost:9001/api"; 
 
