@@ -43,7 +43,7 @@ docker-compose build
 
 docker-compose up
 
-##Integration Tests
+## Integration Tests
 
 You can run the WAES.Test.IntegrationTests. 
 
