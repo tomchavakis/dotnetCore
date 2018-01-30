@@ -43,10 +43,15 @@ docker-compose up
 - Without docker-compose
 
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
+
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
 
 - With docker-compose
+
+DifferencesFunctionalityTest.cs
+
 Uncomment the //const string basePath = "http://localhost:9001/api"; 
 
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreEqualWithDifferentPayload_ReturnComparisonResult
+
 dotnet test WAES.Test.IntegrationTests --filter DifferencesLeft_AreNotEqual_ReturnComparisonResult
